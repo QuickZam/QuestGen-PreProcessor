@@ -1,0 +1,3 @@
+FLASK
+youtube-transcript-api
+pytube 
