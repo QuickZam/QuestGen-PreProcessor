@@ -92,6 +92,7 @@ def exectuter():
     ins = request.args.get('input')
     condition = request.args.get('condition')
     types = request.args.get('type')
+    file_type = request.args.get('file_type')
 
     logger.info(f"Got the I/s \ninput: {ins}\ncondition: {condition}\ntype: {type}")
 
@@ -104,9 +105,9 @@ def exectuter():
       text = yt_text(ins) 
       out = api_giver(text = text, condition = condition) 
       
-    if types == 'PDF': 
+    if types == 'DOCUMENT': 
       logger.info("Type: PDF/IMAGES: sent the link to doctr")
-      text = file_txt(ins)
+      text = file_txt(ins, file_type)
       out = api_giver(text = text, condition = condition) 
 
     return out 
