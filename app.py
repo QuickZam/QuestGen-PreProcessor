@@ -1,5 +1,6 @@
-import requests, re, os 
-from flask import Flask 
+import requests, re, os, base64  
+from logger import logger 
+from flask import Flask, request 
 from pytube import extract
 import banana_dev as banana
 from doctr.io import DocumentFile  
@@ -10,6 +11,9 @@ from youtube_transcript_api import YouTubeTranscriptApi
 app = Flask(__name__)
 model = ocr_predictor(pretrained=True)   
 
+@app.route('/')
+def hello(): 
+  return "your app is running!"
 
 def request_api(summa): 
   # https://curlconverter.com/
@@ -34,25 +38,26 @@ def yt_text(link:str) -> str:
         text = ' '.join([ i['text'].replace('\n', '') for i in transcript])
         # text = re.sub('[^a-zA-Z0-9]', ' ', text)
         # text = request_api(text)
-        # logger.info(f"Transcript found: \n\n{text}")
+        logger.info(f"Transcript found: \n\n{text}")
 
         return text
     except: 
         # logger.info(f"Transcript not found for this link: {link}, so passing to 🍌")
+        API_KEY = "ec49909f-3d2f-4044-8882-535e3ce8a383"
+        MODEL_KEY = "7734639e-bcae-41f6-b7b9-47a9cbba26e1"
         payload = {'link': link}
         out = banana.run(API_KEY, MODEL_KEY, payload)
-        # logger.info(f"Transcript from the 🍌: \n\n{out}")
+        logger.info(f"Transcript from the 🍌: \n\n{out}")
 
         return out 
 
-def file_txt(file) -> str: 
-    if file.endswith('.pdf'): 
+
+def file_txt(file, types) -> str: 
+    file = base64.b64decode(file)
+    if types == 'PDF': 
       doc = DocumentFile.from_pdf(file)
-    elif file.endswith(('.png', '.jpeg', 'jpg')): 
+    if types == 'IMAGE': 
       doc = DocumentFile.from_images(file) 
-    else: 
-      text = 'Please provide pdf or img format'
-      return text 
 
     result = model(doc)
     text = result.render()
@@ -61,8 +66,8 @@ def file_txt(file) -> str:
     return text
 
   
-def api_giver(text:str, condition='TrueOrFalse'): 
-    if condition == 'TrueOrFalse': 
+def api_giver(text:str, condition='FILL'): 
+    if condition == 'FILL': 
         api_key = "ec49909f-3d2f-4044-8882-535e3ce8a383"
         model_key = "389eaf12-4801-4673-bd57-52140c4cc90c"
         payload = {"text": text}
@@ -80,23 +85,35 @@ def api_giver(text:str, condition='TrueOrFalse'):
         out = out['modelOutputs'][0]['output'][0]
         
         return out
+
       
- def exectuter(ins:str, condition:str, type:str): 
-    if type == 'TEXT': 
+@app.route('/text_to_question', methods = ['POST', 'GET'])     
+def exectuter(): 
+    ins = request.args.get('input')
+    condition = request.args.get('condition')
+    types = request.args.get('type')
+
+    logger.info(f"Got the I/s \ninput: {ins}\ncondition: {condition}\ntype: {type}")
+
+    if types == 'TEXT': 
+      logger.info("Type: TEXT: sent directly to BANANA")
       out = api_giver(text = ins, condition = condition) 
      
-    if type == 'VIDEO': 
+    if types == 'VIDEO': 
+      logger.info("Type: VIDEO: sent the video to youtube function")
       text = yt_text(ins) 
       out = api_giver(text = text, condition = condition) 
       
-    if type == 'PDF': 
+    if types == 'PDF': 
+      logger.info("Type: PDF/IMAGES: sent the link to doctr")
       text = file_txt(ins)
-      out = api_giver(text = in, condition = condition) 
-      
+      out = api_giver(text = text, condition = condition) 
+
     return out 
       
     
-    
+if __name__ == '__main__': 
+  app.run()
     
     
     

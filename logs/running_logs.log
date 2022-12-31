@@ -4,3 +4,16 @@
 Wait a minute I think I left my conscience on your front doorstep, oh oh Wait a minute I think I left my consciousnessin the sixth dimension But I'm here right now, right now Just sitting in a cloud, oh wow I'm here right now,right now with you, oh wow, oh wow I don't even care,I’ll run my hands through your hair You wanna run your fingers through mine But my dreads too thick and that's alright Hold on, wait a minute,Feel my heart's intention, oh Hold on, wait a minute,I left my consciousness in the sixth dimension Left my soul in his vision Let's go get it, oh, oh,Let's go get it, oh, oh Some things don't work,Some things are bound to be Some things, they hurt,And they tear apart me You left your diary at my house And I read those pages,do you really love me, baby? Some things don't work,Some things are bound to be Some things, they hurt,And they tear apart me But I broke my word,and you were bound to see And I cried at the curb,When you first said, "Oel ngati kameie" Hold on, wait a minute,Feel my heart's intention Hold on, wait a minute I left my consciousness in the sixth dimension,Left my soul in his vision Let's go get it, oh, oh,Let's go get it, oh, oh Some people like to live Some just tryin' to get by Some people like that hurt Some just rather say goodbye, bye Hold on, wait a minute,Feel my heart's intention, oh Hold on, wait a minute,I left my consciousness in the sixth dimension Left my soul in his vision Let's go get it, ah, ah,Let's go get it, ah, ah (Let's go get it) (Mmh) (Let's go get it) (Mmh)
 [2022-12-30 09:05:47,478: INFO: app]: Transcript not found for this link: https://www.youtube.com/watch?v=1H-slVEJcN4, so passing to 🍌
 [2022-12-30 09:07:36,756: INFO: app]: Transcript not found for this link: https://www.youtube.com/watch?v=1H-slVEJcN4, so passing to 🍌
+[2022-12-31 09:56:55,717: INFO: font_manager]: generated new fontManager
+[2022-12-31 09:57:51,889: INFO: _internal]: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2022-12-31 09:57:51,889: INFO: _internal]: [33mPress CTRL+C to quit[0m
+[2022-12-31 09:59:12,368: INFO: _internal]: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2022-12-31 09:59:12,368: INFO: _internal]: [33mPress CTRL+C to quit[0m
+[2022-12-31 09:59:22,512: INFO: _internal]: 127.0.0.1 - - [31/Dec/2022 09:59:22] "GET / HTTP/1.1" 200 -
+[2022-12-31 09:59:22,699: INFO: _internal]: 127.0.0.1 - - [31/Dec/2022 09:59:22] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2022-12-31 10:02:54,781: INFO: _internal]: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2022-12-31 10:02:54,792: INFO: _internal]: [33mPress CTRL+C to quit[0m
+[2022-12-31 10:04:31,505: INFO: _internal]: 127.0.0.1 - - [31/Dec/2022 10:04:31] "GET / HTTP/1.1" 200 -
