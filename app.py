@@ -92,7 +92,10 @@ def exectuter():
     ins = request.args.get('input')
     condition = request.args.get('condition')
     types = request.args.get('type')
-    file_type = request.args.get('file_type')
+    file_type = request.args.get('file_name')
+
+    if file_type.endswith('.pdf'): file_type = 'PDF'; 
+    else: file_type = 'IMAGE'
 
     logger.info(f"Got the I/s \ninput: {ins}\ncondition: {condition}\ntype: {type}")
 
@@ -115,7 +118,4 @@ def exectuter():
     
 if __name__ == '__main__': 
   app.run()
-    
-    
-    
-    
+  
