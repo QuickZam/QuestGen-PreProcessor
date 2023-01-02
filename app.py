@@ -47,6 +47,7 @@ def yt_text(link:str) -> str:
         MODEL_KEY = "7734639e-bcae-41f6-b7b9-47a9cbba26e1"
         payload = {'link': link}
         out = banana.run(API_KEY, MODEL_KEY, payload)
+        out = out['modelOutputs'][0]['text']
         logger.info(f"Transcript from the 🍌: \n\n{out}")
 
         return out 
@@ -97,7 +98,7 @@ def exectuter():
     if file_type.endswith('.pdf'): file_type = 'PDF'; 
     else: file_type = 'IMAGE'
 
-    logger.info(f"Got the I/s \ninput: {ins}\ncondition: {condition}\ntype: {type}")
+    logger.info(f"Got the I/s \ninput: {ins}\ncondition: {condition}\ntype: {types}")
 
     if types == 'TEXT': 
       logger.info("Type: TEXT: sent directly to BANANA")
